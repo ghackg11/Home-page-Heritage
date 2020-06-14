@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Lobster+Two&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +40,7 @@
             height: 0.8vh;
         }
         
-        nav span {
+        #appname {
             color: white;
             font-family: 'Lobster Two', cursive;
             font-size: 5vh;
@@ -132,27 +133,103 @@
             border: 4px solid #f0a500;
             background-color: transparent;
             color: black;
-            font-size: 1.5vw;
+            font-size: 2vw;
             box-shadow: 5px 5px 5px black;
-            font-family: fantasy;
+            font-family: 'Odibee Sans', cursive;
+        }
+        
+        .right {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 1.7vw;
+            font-family: 'Odibee Sans', cursive;
+            border-bottom: 2px solid white;
+        }
+        
+        #signin {
+            right: 15vw;
+        }
+        
+        #signup {
+            right: 6vw;
+        }
+        
+        #content {
+            display: none;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+        
+        @keyframes animatebottom {
+            from {
+                bottom: -100%;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+        
+        #loaderbox {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            position: absolute;
+        }
+        
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border: 16px solid #cf7500;
+            border-radius: 50%;
+            border-top: 16px solid #ffcd3c;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
         }
     </style>
 </head>
 
-<body>
-    <nav><span>AppName</span></nav>
-    <div id="belownav"></div>
-    <div id="belownav2"></div>
-    <div id="box"></div>
-    <img src="arrow.png" alt="" id="arrow">
-    <img src="back-arrow.png" alt="" id="backarrow">
-    <div id="midbox"></div>
-    <div id="midboxcontent">
-        <p>About The Website(Basic Info)</p>
-        <button id="explorebtn">Explore</button>
+<body onload="myFunction()">
+    <div id="content">
+        <nav>
+            <span id="appname">AppName</span>
+            <span id="signin" class="right">Sign-In</span>
+            <span id="signup" class="right">Sign-Up</span>
+        </nav>
+        <div id="belownav"></div>
+        <div id="belownav2"></div>
+        <div id="box"></div>
+        <img src="arrow.png" alt="" id="arrow">
+        <img src="back-arrow.png" alt="" id="backarrow">
+        <div id="midbox"></div>
+        <div id="midboxcontent">
+            <p>About The Website(Basic Info)</p>
+            <button id="explorebtn">Explore</button>
+        </div>
     </div>
-
-
+    <div id="loaderbox">
+        <div id="loader"></div>
+    </div>
 
 
     <script>
@@ -176,6 +253,16 @@
             document.getElementById('midboxcontent').style.opacity = 1;
 
         });
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 3000);
+        }
+
+        function showPage() {
+            document.getElementById("loaderbox").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
     </script>
 </body>
 
